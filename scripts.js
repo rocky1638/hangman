@@ -4,6 +4,7 @@ window.onload = function() {
   var word = "";
   var divRow = document.querySelector(".row");
   var wordArray = [];
+  var completedWordArray = [];
   var wrongLetterArray = [];
 
   wordInput.addEventListener("keypress", startGame);
@@ -34,8 +35,9 @@ window.onload = function() {
 
     // Show blanks
     for (var i = 0; i < word.length; i++) {
-      if (word.charAt(i) == " ")
+      if (word.charAt(i) == " ") {
         wordArray[i] = " ";
+      }
       else {
         wordArray[i] = "_";
       }
@@ -47,6 +49,8 @@ window.onload = function() {
       p.className = "letter-" + i;
       wordDiv.appendChild(p)
       divRow.appendChild(wordDiv);
+
+      completedWordArray[i] = word[i];
     }
 
     // Create Space for Guessed Characters
@@ -100,15 +104,21 @@ window.onload = function() {
 
                 guessInput.value = "";
 
-                guessesLeft--;
-                guessText.innerText = "Guesses Remaining: " + guessesLeft;
+                deductGuesses();
               }
               else {
                 guessInput.value = "";
               }
 
             }
-
+            function deductGuesses() {
+              if (completedWordArray.every(function(letter) {
+                return guessedChar != letter
+              })) {
+                guessesLeft--;
+                guessText.innerText = "Guesses Remaining: " + guessesLeft;
+              }
+            }
           }
         }
       }
