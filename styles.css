@@ -1,0 +1,43 @@
+div {
+  display: block;
+}
+
+div.container-fluid {
+  text-align: center;
+}
+
+div.word-prompt {
+  align-items: center;
+}
+
+h1.word-prompt {
+  text-align: center;
+  margin-top: 18%;
+}
+
+div.word-submit-form {
+  align-items: center;
+}
+
+div.guess-div {
+  text-align: left;
+}
+
+div.word-div,
+div.guessed-chars-div {
+  display: inline-block;
+}
+
+h2 {
+  display: inline-block;
+}
+
+p {
+  font-size: 50px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  text-decoration: underline;
+  text-underline-position: below;
+}
