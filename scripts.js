@@ -37,8 +37,7 @@ window.onload = function() {
     for (var i = 0; i < word.length; i++) {
       if (word.charAt(i) == " ") {
         wordArray[i] = " ";
-      }
-      else {
+      } else {
         wordArray[i] = "_";
       }
 
@@ -105,18 +104,32 @@ window.onload = function() {
                 guessInput.value = "";
 
                 deductGuesses();
-              }
-              else {
+                if (guessesLeft == 0) {
+                  gameOver();
+                }
+              } else {
                 guessInput.value = "";
               }
 
             }
+
             function deductGuesses() {
               if (completedWordArray.every(function(letter) {
-                return guessedChar != letter
-              })) {
+                  return guessedChar != letter
+                })) {
                 guessesLeft--;
                 guessText.innerText = "Guesses Remaining: " + guessesLeft;
+              }
+            }
+
+            function gameOver() {
+              for (var i = 0; i < word.length; i++) {
+                var p = document.querySelector(".letter-" + i);
+                p.innerText = word[i];
+
+                var youLose = document.createElement("p");
+                youLose.innerText = "You Lose!";
+                divRow.append(youLose);
               }
             }
           }
